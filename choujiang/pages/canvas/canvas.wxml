@@ -1,0 +1,29 @@
+<view class="wrapper">
+  <view class='header'>
+    <text class='header-count' style='top:{{scale===0.9?270:210}}rpx'>{{chanceRemain}}</text>
+  </view>
+  <view class="main" style='transform:scale({{scale}});margin:0 auto;'>
+    <view class="canvas-container" style='margin:0 auto;'>
+      <view animation="{{animationData}}" class="canvas-content" style='margin:0 auto;'>
+        <canvas style="width: 300px; height: 300px; margin:0 auto;" class="canvas-element" canvas-id="lotteryCanvas"></canvas>
+        <view class="canvas-line">
+          <view class="canvas-litem" wx:for="{{awardsList}}" wx:key="unique" style="-webkit-transform: rotate({{item.lineTurn}});transform: rotate({{item.lineTurn}})"></view>
+        </view>
+         <view class="canvas-list">
+          <view class="canvas-item" wx:for="{{awardsList}}" wx:key="unique">
+            <view class="canvas-item-text" style="-webkit-transform: rotate({{item.turn}});transform: rotate({{item.turn}})">
+              <text class='canvas-item-text-inner {{scale===1.4?"btnfont":"normal"}}'> {{item.award}}</text>
+              <image mode='aspectFit'  class='canvas-item-img' src="{{item.img}}"></image>
+            </view>
+          </view>
+        </view>  
+      </view>
+       <view bindtap="getLottery" class="{{scale===1.4?'btnfont':'normal'}} canvas-btn {{turning?disabled:able}} {{chanceRemain==0?disabled:able}}">抽奖</view> 
+    </view>
+    <view class="main-container">
+      <view class="main-container-btn">
+         <button bindtap="gotoList" type="primary">查看中奖</button> 
+      </view>
+    </view>
+  </view>
+</view>
